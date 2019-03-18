@@ -20,5 +20,7 @@ describe('Test user API', function() {
     });
 
     it('simple test here', async function() {
+        let response = await agent.get('/api/users/who-am-i');
+        expect(response.body.success).to.equal(true);
     });
 });
