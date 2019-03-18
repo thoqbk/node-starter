@@ -1,0 +1,29 @@
+{
+    "apps" : [{
+      "name"        : "node-starter",
+      "script"      : "./bin/www",
+      "watch"       : [
+        "config", "libs", "models", "routes", "services",
+        "app.js", "auth.js", "db.js", "io-server.js"
+      ],
+      "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+      "node_args"   : [
+        "--harmony"
+      ],
+      "env_production" : {
+        "NODE_ENV": "production",
+        "PORT": 3001
+      }
+    }],
+    "deploy": {
+      "production": {
+        "user": "root",
+        "host": "45.32.122.154",
+        "ref"  : "origin/master",
+        "repo" : "git@github.com:thoqbk/node-starter.git",
+        "path" : "/data/node-starter",
+        "pre-deploy": "git pull && git checkout master && git pull",
+        "post-deploy" : "yarn && yarn restart-live"
+      }
+    }
+  }
